@@ -14,6 +14,7 @@ void menu();
 void inicializar();
 void pop();
 void push();
+void exibirPilha();
 //--------------------------
 
 
@@ -33,6 +34,7 @@ void menu()
 		cout << "2 - Inserir elemento (Push) \n";
 		cout << "3 - Remover elementos (Pop) \n";
 		cout << "4 - Sair \n";
+		cout << "5 - Exibir Pilha \n";
 
 
 		cout << "Opcao: ";
@@ -48,6 +50,9 @@ void menu()
 			break;
 		case 4:
 			return;
+		case 5:
+			exibirPilha();
+			break;
 		default:
 			break;
 		}
@@ -85,15 +90,28 @@ void push()
 
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
-	novo->prox = NULL;
-
-
+	novo->prox = topo;
+	topo = novo;
 }
 
 void pop()
 {
+	NO* aux = topo;
 
-	
+	topo = topo->prox;
+	free(aux);
 
 }
 
+void exibirPilha() {
+	if (topo == NULL) {
+		cout << "Elemento vazio";
+	}
+
+	NO* aux = topo;
+	cout << "Pilha elementos: " << endl;
+	while (aux != NULL) {
+		cout << aux->valor << endl;
+		aux = aux->prox;
+	}
+}
